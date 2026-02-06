@@ -16,7 +16,7 @@ const Pricing: React.FC = () => {
             Tiered Solutions
           </motion.p>
           <h2 className="text-4xl md:text-7xl font-bold font-heading uppercase tracking-tighter text-slate-200">
-            Investment
+            Pricing
           </h2>
         </header>
 
