@@ -20,7 +20,13 @@ const StoryReveal: React.FC = () => {
   );
 };
 
-const RevealItem = ({ text, index }: { text: string; index: number }) => {
+// Fixed: Defined props interface and used React.FC to properly handle React's intrinsic props like 'key'
+interface RevealItemProps {
+  text: string;
+  index: number;
+}
+
+const RevealItem: React.FC<RevealItemProps> = ({ text, index }) => {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
