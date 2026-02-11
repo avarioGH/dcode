@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PROJECTS } from '../constants';
+import { Project } from '../types';
 
 const Portfolio: React.FC = () => {
   return (
@@ -34,7 +35,13 @@ const Portfolio: React.FC = () => {
   );
 };
 
-const ProjectCard = ({ project, index }: { project: any; index: number }) => {
+// Fixed: Defined props interface and used React.FC to properly handle React's intrinsic props like 'key'
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   return (
     <motion.div 
       initial={{ y: 40, opacity: 0 }}
