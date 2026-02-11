@@ -36,26 +36,51 @@ const Hero: React.FC = () => {
         style={{ y: textY, opacity: textOpacity }}
         className="relative z-10 text-center px-6 flex flex-col items-center pt-10"
       >
-        {/* Logo Section */}
+        {/* Animated Neon Logo Section */}
         <motion.div
           initial={{ y: 20, opacity: 0, scale: 0.98 }}
-          animate={{ y: 0, opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-0"
+          animate={{ 
+            y: 0, 
+            opacity: [0, 1, 0.8, 1, 0.9, 1], // Flicker effect on entrance
+            scale: 1,
+            filter: [
+              "drop-shadow(0 0 10px rgba(59, 130, 246, 0.4))",
+              "drop-shadow(0 0 25px rgba(59, 130, 246, 0.7))",
+              "drop-shadow(0 0 10px rgba(59, 130, 246, 0.4))"
+            ]
+          }}
+          transition={{ 
+            duration: 2, 
+            ease: [0.16, 1, 0.3, 1],
+            filter: {
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }
+          }}
+          className="mb-0 relative"
         >
+          {/* Main Logo Image with Neon Styling */}
           <img 
             src={logoUrl} 
             alt="D-Code Web Logo" 
-            className="h-48 sm:h-64 md:h-[350px] w-auto object-contain drop-shadow-[0_0_50px_rgba(30,58,138,0.2)]" 
+            className="h-48 sm:h-64 md:h-[350px] w-auto object-contain brightness-110 contrast-110" 
+          />
+          
+          {/* Extra Glow Layer for Intense Neon Feel */}
+          <motion.div 
+            animate={{ opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-0 bg-blue-500/10 blur-[60px] rounded-full pointer-events-none"
           />
         </motion.div>
 
-        {/* Headline - Now with delayed fade */}
+        {/* Headline - Gap removed with negative margin for tighter fit */}
         <motion.h1 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="text-xl sm:text-3xl md:text-5xl text-slate-200 max-w-4xl mx-auto font-light leading-snug tracking-tight px-4 mt-2 mb-4 md:mb-6"
+          className="text-xl sm:text-3xl md:text-5xl text-slate-200 max-w-4xl mx-auto font-light leading-snug tracking-tight px-4 -mt-4 sm:-mt-8 md:-mt-12 mb-4 md:mb-6 relative z-20"
         >
           We design interactive websites<br className="hidden sm:block" /> that people remember.
         </motion.h1>
